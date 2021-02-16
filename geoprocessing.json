@@ -1,0 +1,19 @@
+{
+  "author": "Chad Burt <chad@underbluewaters.net>",
+  "organization": "",
+  "region": "us-east-1",
+  "functions": [
+    "src/functions/clipToShoreline.ts",
+    "src/functions/seagrass.ts",
+    "src/functions/surveys.ts",
+    "src/functions/protectionLevel.ts",
+    "src/functions/watershed.ts"
+  ],
+  "clients": [
+    {
+      "name": "FISMReports",
+      "description": "",
+      "source": "src/clients/FISMReports.tsx"
+    }
+  ]
+}

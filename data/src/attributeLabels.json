@@ -1,0 +1,52 @@
+{
+  "AQUA": {
+    "NEAR_FISH": "Nearshore fish cages",
+    "OFF_FISH": "Offshore fish cages",
+    "SHELL_SUS": "Shellfish and algae (suspension culture)",
+    "SHELL_BOT": "Shellfish and algae (bottom culture)",
+    "none": "None"
+  },
+  "BOTTOM": {
+    "EAR_MAT": "Construction of new coastal structures, or the expansion of existing coastal structures, movement of earth material (dredging, excavation, filling, dredge spoil placement dune building, beach nourishment, grading, clearing, removing/vegetation",
+    "OTHER_BO": "Re-construction or maintenance of existing coastal structures. Other bottom structures.",
+    "none": "None"
+  },
+  "FISHING": {
+    "BEACH_REC": "Beach/haul seines or surrounding nets near shore (recreational)",
+    "BEACH_COM": "Beach/haul seines or surrounding nets near shore (commercial)",
+    "BIVALVE": "Bivalve dredge (mechanical - commercial only)",
+    "GILL_COM": "Gill nets (commercial only)",
+    "TRAPS_COM": "Traps (fish - commercial only)",
+    "LINE_REC": "Lines (jigs, hook and line, rod, troll - recreational)",
+    "LINE_COM": "Lines (jigs, hook and line, rod, troll - commercial)",
+    "BI_DRE_REC": "Bivalve dredge (digging, raking by hand - recreational)",
+    "BI_DRE_COM": "Bivalve dredge (digging, raking by hand - commercial)",
+    "TP_REC": "Traps and pots (lobster, crab - recreational)",
+    "TP_COM": "Traps and pots (lobster, crab - commercial)",
+    "HH_REC": "Hand harvesting (recreational)",
+    "HH_COM": "Hand harvesting (commercial)",
+    "SP_REC": "Spearfishing/diving (recreational)",
+    "SP_COM": "Spearfishing/diving (commercial)",
+    "CAST_NETS": "Cast nets (recreational)",
+    "none": "None"
+  },
+  "REC": {
+    "UNREG_BOAT": "Partially or unregulated boating",
+    "FULL_BOAT": "Fully regulated boating (no motor or no wake in < 10 ft. of water, no anchoring or conservation moorings)",
+    "SCUBA": "SCUBA diving",
+    "SWIM": "Swimming/snorkeling",
+    "none": "None"
+  },
+  "REGULATORY_AU": {
+    "Local": "Local",
+    "State": "State",
+    "Federal": "Federal",
+    "Voluntary": "Voluntary"
+  },
+  "WATER": {
+    "FERT_UN": "Unregulated fertilizer use and conventional septic systems",
+    "FERT_PART": "Partially regulated fertilizer use only",
+    "FERT_REG": "Fully regulated fertilizer use only",
+    "FERT_PLUS": "Fully regulated fertilizer use and alternative onsite wastewater treatment systems that reduce nitrogen loading below seagrass tolerance thresholds (<3 g TN m-2 y-1)"
+  }
+}

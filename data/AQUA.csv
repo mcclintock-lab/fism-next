@@ -1,0 +1,6 @@
+label,value,description
+"Nearshore fish cages","NEAR_FISH",""
+"Offshore fish cages","OFF_FISH",""
+"Shellfish and algae (suspension culture)","SHELL_SUS",""
+"Shellfish and algae (bottom culture)","SHELL_BOT",""
+"None","none",""

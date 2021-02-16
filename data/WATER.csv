@@ -1,0 +1,5 @@
+label,value,description
+"Unregulated fertilizer use and conventional septic systems","FERT_UN",""
+"Partially regulated fertilizer use only","FERT_PART",""
+"Fully regulated fertilizer use only","FERT_REG",""
+"Fully regulated fertilizer use and alternative onsite wastewater treatment systems that reduce nitrogen loading below seagrass tolerance thresholds (<3 g TN m-2 y-1)","FERT_PLUS",""

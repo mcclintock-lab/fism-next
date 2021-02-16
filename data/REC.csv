@@ -1,0 +1,6 @@
+label,value,description
+"Partially or unregulated boating","UNREG_BOAT",""
+"Fully regulated boating (no motor or no wake in < 10 ft. of water, no anchoring or conservation moorings)","FULL_BOAT",""
+"SCUBA diving","SCUBA",""
+"Swimming/snorkeling","SWIM",""
+"None","none",""
