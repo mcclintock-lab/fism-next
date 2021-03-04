@@ -4,6 +4,7 @@ import {
   SketchAttributesCard,
   Skeleton,
   useFunction,
+  LayerToggle,
 } from "@seasketch/geoprocessing/client";
 import { SeagrassResults } from "../functions/seagrass";
 import ScoreIndicator from "./ScoreIndicator";
@@ -36,57 +37,80 @@ export default function Overview({ hidden }: { hidden: boolean }) {
           </p>
         }
       >
-        {(data: SeagrassResults) => (
-          <>
-            {isCollection && (
-              <div>
-                <table
-                  style={{
-                    fontSize: 14,
-                    width: "100%",
-                    textAlign: "center",
-                    marginTop: 10,
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th style={{ textAlign: "left" }}>Name</th>
-                      <th>Area (acres)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.keys(data.sketchAcres!).map((label) => (
+        {(data: SeagrassResults) => {
+          return (
+            <>
+              {isCollection && (
+                <div>
+                  <table
+                    style={{
+                      fontSize: 14,
+                      width: "100%",
+                      textAlign: "center",
+                      marginTop: 10,
+                    }}
+                  >
+                    <thead>
                       <tr>
-                        <td style={{ textAlign: "left" }}>{label}</td>
-                        <td>{Number.format(data.sketchAcres![label])}</td>
+                        <th style={{ textAlign: "left" }}>Name</th>
+                        <th>Area (acres)</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-            {!isCollection && (
-              <p style={{ fontSize: 14 }}>
-                The selected Seagrass Management Area is{" "}
-                <b>{Number.format(data.acres)} acres</b>. The seagrass extent of
-                this SMA is{" "}
-                <b>{Number.format(data.currentSeagrassAcres)} acres</b>, or{" "}
-                <b>{Percent.format(data.protectedSeagrassPercent)}</b> of the
-                total 2017 eelgrass extent of{" "}
-                {Number.format(data.currentSeagrassTotalAcres)} acres.
-              </p>
-            )}
-            {isCollection && (
-              <p>
-                The seagrass extent of this SMA Collection is{" "}
-                <b>{Number.format(data.currentSeagrassAcres)} acres</b>, or{" "}
-                <b>{Percent.format(data.protectedSeagrassPercent)}</b> of the
-                total 2017 eelgrass extent of{" "}
-                {Number.format(data.currentSeagrassTotalAcres)} acres.
-              </p>
-            )}
-          </>
-        )}
+                    </thead>
+                    <tbody>
+                      {Object.keys(data.sketchAcres!).map((label) => (
+                        <tr>
+                          <td style={{ textAlign: "left" }}>{label}</td>
+                          <td>{Number.format(data.sketchAcres![label])}</td>
+                        </tr>
+                      ))}
+                      <tr>
+                        <td
+                          style={{
+                            textAlign: "left",
+                            // borderTop: "1px solid #efefef",
+                            // paddingTop: 2,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Total
+                        </td>
+                        <td
+                          style={{
+                            // borderTop: "1px solid #efefef",
+                            // paddingTop: 2,
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {Number.format(data.acres)}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              {!isCollection && (
+                <p style={{ fontSize: 14 }}>
+                  The selected Seagrass Management Area is{" "}
+                  <b>{Number.format(data.acres)} acres</b>. The seagrass extent
+                  of this SMA is{" "}
+                  <b>{Number.format(data.currentSeagrassAcres)} acres</b>, or{" "}
+                  <b>{Percent.format(data.protectedSeagrassPercent)}</b> of the
+                  total 2017 eelgrass extent of{" "}
+                  {Number.format(data.currentSeagrassTotalAcres)} acres.
+                </p>
+              )}
+              {isCollection && (
+                <p>
+                  The seagrass extent of this SMA Collection is{" "}
+                  <b>{Number.format(data.currentSeagrassAcres)} acres</b>, or{" "}
+                  <b>{Percent.format(data.protectedSeagrassPercent)}</b> of the
+                  total 2017 eelgrass extent of{" "}
+                  {Number.format(data.currentSeagrassTotalAcres)} acres.
+                </p>
+              )}
+            </>
+          );
+        }}
       </ResultsCard>
       <ResultsCard
         title="Seagrass Ecosystem Composition Score"
@@ -193,6 +217,12 @@ export default function Overview({ hidden }: { hidden: boolean }) {
                 </tr>
               </tbody>
             </table>
+            <p>
+              <LayerToggle
+                layerId={"5e80c848cd44abca6e5266c9"}
+                label="Show Eelgrass Change 2012 - 2017 Layer"
+              />
+            </p>
           </>
         )}
       </ResultsCard>
@@ -257,7 +287,7 @@ const SiteSuitability = ({ data }: { data: SeagrassResults }) => {
               data.seagrassSiteSuitability.okArea.percent
           )}
         </b>
-        , of the area of the SMA.
+        , of the area of the {isCollection ? "Collection" : "SMA"}.
       </p>
       <ScoreIndicator score={data.seagrassSiteSuitability.score} />
 
@@ -300,6 +330,10 @@ const SiteSuitability = ({ data }: { data: SeagrassResults }) => {
         eelgrass (≥88 threshold)
         <br />
       </p>
+      <LayerToggle
+        layerId={"5eb2ead3ddf0760320ef69ff"}
+        label="Show Eelgrass Habitat Suitability Index Layer"
+      />
     </>
   );
 };
@@ -360,6 +394,10 @@ const EcosystemCompositionScore = ({ data }: { data: SeagrassResults }) => {
         4. SMA contains more than 75% of the 2017 seagrass extent
         <br />
       </p>
+      <LayerToggle
+        layerId={"5e80c8a8cd44abca6e5268af"}
+        label="Show USFWS LIS Eelgrass 2017 Layer"
+      />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import {
   Card,
+  LayerToggle,
   ResultsCard,
   SketchAttributesCard,
 } from "@seasketch/geoprocessing/client";
@@ -69,6 +70,11 @@ export default function ProtectionLevel({ hidden }: { hidden: boolean }) {
                 IUCN, 2016
               </a>
             </p>
+
+            <LayerToggle
+              layerId={"5e80c8a8cd44abca6e5268af"}
+              label="Show USFWS LIS Eelgrass 2017 Layer"
+            />
           </>
         )}
       </ResultsCard>
@@ -192,7 +198,10 @@ export default function ProtectionLevel({ hidden }: { hidden: boolean }) {
 }
 
 function ChoiceFieldValue({ attribute }: { attribute: UserAttribute }) {
-  const values: string[] = JSON.parse(attribute.value);
+  let values: string[] | string = attribute.value;
+  if (!Array.isArray(values)) {
+    values = JSON.parse(values) as string[];
+  }
   const labels = attrLabels[attribute.exportId];
   return <div>{values.map((v) => labels[v]).join(", ")}</div>;
 }

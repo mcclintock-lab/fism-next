@@ -21,7 +21,7 @@
     "@seasketch/geoprocessing"
   ],
   "devDependencies": {
-    "@seasketch/geoprocessing": "^0.8.5"
+    "@seasketch/geoprocessing": "^0.9.0"
   },
   "repositoryUrl": "https://github.com/underbluewaters/fism-next",
   "author": "Chad Burt",
@@ -35,6 +35,7 @@
     "url": "https://github.com/underbluewaters/fism-next/issues"
   },
   "dependencies": {
+    "@turf/dissolve": "^6.3.0",
     "@turf/points-within-polygon": "^6.3.0",
     "@turf/projection": "^6.3.0",
     "csv": "^5.3.2",

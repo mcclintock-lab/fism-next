@@ -40,9 +40,10 @@ const descriptions: { [score: number]: string } = {
 
 export default function WatershedProtection({ hidden }: { hidden: boolean }) {
   const [attributes, getAttribute] = useSketchProperties();
-  const watershedProtections = JSON.parse(
-    getAttribute("WATER", "[]") as string
-  ) as string[];
+  let watershedProtections = getAttribute("WATER", []);
+  if (!Array.isArray(watershedProtections)) {
+    watershedProtections = JSON.parse(watershedProtections) as string[];
+  }
   const [props] = useSketchProperties();
   const isCollection = props.isCollection;
 

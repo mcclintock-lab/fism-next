@@ -28,16 +28,18 @@ const FISMReports = () => {
   const [tab, setTab] = useState<string>("Overview");
   return (
     <>
-      <SegmentControl
-        value={tab}
-        onClick={(segment) => setTab(segment)}
-        segments={[
-          "Overview",
-          "Protection Level",
-          "Watershed Protections",
-          "Survey Results",
-        ]}
-      />
+      <div style={{ marginTop: 5 }}>
+        <SegmentControl
+          value={tab}
+          onClick={(segment) => setTab(segment)}
+          segments={[
+            "Overview",
+            "Protection Level",
+            "Watershed Protections",
+            "Survey Results",
+          ]}
+        />
+      </div>
       <Overview hidden={!enableAllTabs && tab !== "Overview"} />
       <ProtectionLevel hidden={!enableAllTabs && tab !== "Protection Level"} />
       <WatershedProtection

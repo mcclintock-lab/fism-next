@@ -6,7 +6,14 @@ import {
   isCollection,
 } from "@seasketch/geoprocessing";
 import bbox from "@turf/bbox";
-import { BBox, Polygon, MultiPolygon, Feature, Geometry } from "geojson";
+import {
+  BBox,
+  Polygon,
+  MultiPolygon,
+  Feature,
+  Geometry,
+  FeatureCollection,
+} from "geojson";
 import { intersection } from "martinez-polygon-clipping";
 import totals from "../../data/totals.json";
 import currentEelgrass from "../../data/src/currentEelgrassMultipolygon.json";
@@ -14,6 +21,7 @@ import seagrassChange from "../../data/src/seagrassChange.json";
 import calcArea from "@turf/area";
 import okSuitability from "../../data/src/suitability-under-88-clipped.json";
 import goodSuitability from "../../data/src/suitability-over-88-clipped.json";
+import dissolve from "@turf/dissolve";
 
 export interface AreaMeasure {
   squareMeters: number;
@@ -155,8 +163,9 @@ function calculateSeagrassChange(sketch: Sketch | SketchCollection) {
         percent: 0,
       },
     };
-    for (const feature of sketch.features) {
-      const data = calculateSeagrassChangeForSketch(feature);
+    const dissolved = dissolve(sketch as FeatureCollection<Polygon>);
+    for (const feature of dissolved.features) {
+      const data = calculateSeagrassChangeForSketch(feature as Sketch);
       results.gain.squareMeters += data.gain.squareMeters;
       results.gain.acres += data.gain.acres;
       results.loss.squareMeters += data.loss.squareMeters;
@@ -203,9 +212,10 @@ function calculateSeagrassSiteSuitability(
   };
   let totalArea = 0;
   if (isCollection(sketch)) {
-    for (const feature of sketch.features) {
+    const dissolved = dissolve(sketch as FeatureCollection<Polygon>);
+    for (const feature of dissolved.features) {
       totalArea += calcArea(feature);
-      const data = calculateSeagrassSiteSuitabilityForSketch(feature);
+      const data = calculateSeagrassSiteSuitabilityForSketch(feature as Sketch);
       results.okArea.acres += data.okArea.acres;
       results.okArea.squareMeters += data.okArea.squareMeters;
       results.goodArea.acres += data.goodArea.acres;
@@ -316,8 +326,9 @@ const BLANK = {
 function calculateCurrentSeagrassOverlap(sketch: Sketch | SketchCollection) {
   if (isCollection(sketch)) {
     let sum = 0;
-    for (const feature of sketch.features) {
-      sum += calculateCurrentSeagrassOverlapForSketch(feature);
+    const dissolved = dissolve(sketch as FeatureCollection<Polygon>);
+    for (const feature of dissolved.features) {
+      sum += calculateCurrentSeagrassOverlapForSketch(feature as Sketch);
     }
     return sum;
   } else {
