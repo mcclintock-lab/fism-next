@@ -200,7 +200,11 @@ export default function ProtectionLevel({ hidden }: { hidden: boolean }) {
 function ChoiceFieldValue({ attribute }: { attribute: UserAttribute }) {
   let values: string[] | string = attribute.value;
   if (!Array.isArray(values)) {
-    values = JSON.parse(values) as string[];
+    if (/\[/.test(attribute.value)) {
+      values = JSON.parse(values) as string[];
+    } else {
+      values = [];
+    }
   }
   const labels = attrLabels[attribute.exportId];
   return <div>{values.map((v) => labels[v]).join(", ")}</div>;
