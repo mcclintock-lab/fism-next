@@ -50,9 +50,11 @@ async function watershed(
   return {
     scores,
     totalScore: isCollection(sketch)
-      ? scores.reduce((sum, s) => {
-          return sum + s.score * s.percentArea;
-        }, 0)
+      ? Math.round(
+          scores.reduce((sum, s) => {
+            return sum + s.score * s.percentArea;
+          }, 0)
+        )
       : scores[0].score,
   };
 }

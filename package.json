@@ -35,6 +35,7 @@
     "url": "https://github.com/underbluewaters/fism-next/issues"
   },
   "dependencies": {
+    "@turf/buffer": "^6.3.0",
     "@turf/dissolve": "^6.3.0",
     "@turf/points-within-polygon": "^6.3.0",
     "@turf/projection": "^6.3.0",

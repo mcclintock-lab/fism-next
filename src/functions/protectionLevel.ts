@@ -50,9 +50,11 @@ async function protectionLevel(
   let totalScore = scores[0].score;
   let presentedTotalScore = scores[0].presentedScore as 0 | 1 | 2 | 3 | 4;
   if (isCollection(sketch)) {
-    totalScore = scores.reduce((sum, s) => {
-      return sum + s.score * s.percentArea;
-    }, 0);
+    totalScore = Math.round(
+      scores.reduce((sum, s) => {
+        return sum + s.score * s.percentArea;
+      }, 0)
+    );
     presentedTotalScore = presentedScore(totalScore);
   }
 
